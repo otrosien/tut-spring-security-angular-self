@@ -1,0 +1,21 @@
+server:
+  port: 8040
+
+management:
+  context-path: /system
+
+zuul:
+  routes:
+    resource:
+      path: /resource/**
+      url: http://localhost:9000/resource
+    user:
+      path: /user/**
+      url: http://localhost:9999/uaa/user
+    ui:
+      path: /ui/**
+      url: http://localhost:8080
+
+logging:
+  level:
+    org.springframework.security: DEBUG
