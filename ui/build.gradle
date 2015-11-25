@@ -45,7 +45,8 @@ dependencies {
 	runtime('org.springframework.boot:spring-boot-devtools')
 	runtime('org.springframework.security:spring-security-jwt')
 	runtime('org.springframework.security.oauth:spring-security-oauth2')
-	
+	compile('org.springframework.cloud:spring-cloud-starter-zipkin')
+
 	runtime('org.webjars:angularjs:1.4.7')
 	runtime("org.webjars:angular-ui-bootstrap:0.14.3")
 	runtime("org.webjars:bootstrap:3.3.5")

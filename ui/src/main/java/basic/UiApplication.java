@@ -15,6 +15,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoRestTemplateCustomizer;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.cloud.sleuth.Sampler;
+import org.springframework.cloud.sleuth.sampler.AlwaysSampler;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -33,6 +36,11 @@ import org.springframework.web.util.WebUtils;
 @EnableOAuth2Sso
 @EnableZuulProxy
 public class UiApplication extends WebSecurityConfigurerAdapter {
+
+	@Bean
+	public Sampler<?> defaultSampler() {
+		return new AlwaysSampler();
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(UiApplication.class, args);

@@ -1,6 +1,11 @@
 spring:
+  application:
+    name: ui
   aop:
     proxy-target-class: true
+
+server:
+  port: 8000
 
 security:
   ignored:
@@ -24,7 +29,8 @@ security:
 logging:
   level:
     org.springframework.security: DEBUG
-
+  pattern:
+    level: '%clr([trace=%X{X-Trace-Id:-},span=%X{X-Span-Id:-}]){yellow} %5p'
 
 zuul:
   routes:

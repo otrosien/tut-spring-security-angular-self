@@ -6,6 +6,8 @@ import java.security.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.sleuth.Sampler;
+import org.springframework.cloud.sleuth.sampler.AlwaysSampler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -34,6 +36,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @SessionAttributes("authorizationRequest")
 @EnableResourceServer
 public class AuthApplication extends WebMvcConfigurerAdapter {
+
+	@Bean
+	public Sampler<?> defaultSampler() {
+		return new AlwaysSampler();
+	}
 
 	@RequestMapping("/user")
 	@ResponseBody

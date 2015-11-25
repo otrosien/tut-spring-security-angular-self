@@ -44,6 +44,7 @@ dependencies {
 	runtime('org.springframework.boot:spring-boot-starter-actuator')
 	runtime('org.springframework.boot:spring-boot-devtools')
 	runtime('org.springframework.boot:spring-boot-starter-freemarker')
+	compile('org.springframework.cloud:spring-cloud-starter-zipkin')
 	
 	runtime("org.webjars:jquery:2.1.4")
 	runtime("org.webjars:bootstrap:3.3.5")
