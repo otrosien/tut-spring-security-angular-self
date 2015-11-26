@@ -12,16 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoRestTemplateCustomizer;
-import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.cloud.sleuth.Sampler;
 import org.springframework.cloud.sleuth.sampler.AlwaysSampler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.web.csrf.CsrfFilter;
@@ -33,8 +30,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.WebUtils;
 
 @SpringBootApplication
-@EnableOAuth2Sso
-@EnableZuulProxy
 public class UiApplication extends WebSecurityConfigurerAdapter {
 
 	@Bean
@@ -48,19 +43,18 @@ public class UiApplication extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.logout().and().antMatcher("/**").authorizeRequests()
-		.antMatchers("/index.html", "/home.html", "/", "/login", "/ui/login").permitAll()
-		.anyRequest().authenticated().and().csrf()
-		.csrfTokenRepository(csrfTokenRepository()).and()
-		.addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
+		http
+			.logout().logoutSuccessUrl("/").permitAll()
+		.and()
+			.antMatcher("/**").authorizeRequests()
+			.antMatchers("/index.html", "/home.html", "/", "/login").permitAll()
+			.anyRequest().authenticated()
+		.and()
+			.csrf()
+			.csrfTokenRepository(csrfTokenRepository()).and()
+			.addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
 	}
 
-	@Override
-	public void configure(WebSecurity web) throws Exception {
-		super.configure(web);
-		web.ignoring().antMatchers("/webjars/**", "/js/**", "/css/**");
-	}
-	
 	private Filter csrfHeaderFilter() {
 		return new OncePerRequestFilter() {
 			@Override

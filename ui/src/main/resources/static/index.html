@@ -1,9 +1,10 @@
 <!doctype html>
 <html>
 <head>
-<title>Hello AngularJS</title>
-<link rel="stylesheet" href="webjars/bootstrap/3.3.5/css/bootstrap.min.css"/>
-<link rel="stylesheet" href="webjars/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
+<title>Hello Message</title>
+
+<link rel="stylesheet" href="webjars/bootstrap/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="webjars/bootstrap/css/bootstrap-theme.min.css"/>
 
 <style type="text/css">
 [ng\:cloak], [ng-cloak], .ng-cloak {
@@ -12,19 +13,31 @@
 </style>
 </head>
 
-<body ng-app="hello" ng-cloak class="ng-cloak">
-	<div ng-controller="navigation" class="container">
-		<ul class="nav nav-pills" role="tablist">
-			<li ng-class="{active:tab('home')}"><a href="#/">home</a></li>
-			<li ng-show="!authenticated"><a href="login">login</a></li>
-			<li ng-show="authenticated"><a href="" ng-click="logout()">logout</a></li>
-		</ul>
+<body ng-app="hello" ng-cloak class="ng-cloak" ng-controller="home">
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<p>
+				<a class="navbar-brand" href='#/'><b>Home</b></a>
+			</p>
+			<p class="navbar-text navbar-right" ng-show="authenticated">
+				Signed in as <a href="#/" class="navbar-link">{{user}}</a>
+			</p>
+		</div>
+	</nav>
+	<div class="container">
+		<h1>Message</h1>
+		<div ng-show="authenticated">
+			<p>The ID is {{greeting.id}}</p>
+			<p>The content is {{greeting.content}}</p>
+		</div>
+		<div ng-show="!authenticated">
+			<p>Login to see your greeting</p>
+		</div>
 	</div>
-	<div ng-view class="container"></div>
-
-  <script src="webjars/angularjs/1.4.7/angular.min.js"></script>
-  <script src="webjars/angularjs/1.4.7/angular-route.min.js"></script>
-  <script src="webjars/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.min.js"></script>
+  <script src="webjars/angularjs/angular.min.js"></script>
+  <script src="webjars/angularjs/angular-route.min.js"></script>
+  <script src="webjars/angular-ui-bootstrap/ui-bootstrap-tpls.min.js"></script>
 	<script src="js/hello.js"></script>
+
 </body>
 </html>

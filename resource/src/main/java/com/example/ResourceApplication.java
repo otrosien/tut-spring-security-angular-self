@@ -1,5 +1,6 @@
 package com.example;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -21,8 +22,8 @@ public class ResourceApplication {
 		SpringApplication.run(ResourceApplication.class, args);
 	}
 
-	@RequestMapping("/")
-	public Map<String, Object> home(HttpServletRequest request) {
+	@RequestMapping("/resource")
+	public Map<String, Object> home(HttpServletRequest request, Principal principal) {
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("id", UUID.randomUUID().toString());
 		model.put("content", "Hello World");

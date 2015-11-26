@@ -1,7 +1,7 @@
 <html>
 <head>
-<link rel="stylesheet" href="/uaa/webjars/bootstrap/3.3.5/css/bootstrap.min.css"/>
-<link rel="stylesheet" href="/uaa/webjars/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
+<link rel="stylesheet" href="/webjars/bootstrap/3.3.5/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="/webjars/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
 </head>
 <body>
 <#if RequestParameters['error']??>
@@ -23,6 +23,6 @@
 		  <button type="submit" class="btn btn-primary">Submit</button>
 		</form>
 	</div>
-	<script src="/uaa/webjars/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
+	<script src="/webjars/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
 </body>
 </html>

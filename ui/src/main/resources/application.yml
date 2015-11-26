@@ -3,6 +3,9 @@ spring:
     name: ui
   aop:
     proxy-target-class: true
+  resources:
+    chain:
+      enabled: true
 
 server:
   port: 8000
@@ -13,12 +16,6 @@ security:
   user:
     password: none
   oauth2:
-    client:
-      accessTokenUri: http://localhost:9999/uaa/oauth/token
-      userAuthorizationUri: http://localhost:9999/uaa/oauth/authorize
-      clientId: acme
-      clientSecret: acmesecret
-      use-current-uri: true
     resource:
       jwt:
         keyValue: |
@@ -31,12 +28,3 @@ logging:
     org.springframework.security: DEBUG
   pattern:
     level: '%clr([trace=%X{X-Trace-Id:-},span=%X{X-Span-Id:-}]){yellow} %5p'
-
-zuul:
-  routes:
-    resource:
-      path: /resource/**
-      url: http://localhost:9000/resource
-    user:
-      path: /user/**
-      url: http://localhost:9999/uaa/user

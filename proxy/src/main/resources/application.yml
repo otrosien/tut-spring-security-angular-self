@@ -1,21 +1,46 @@
 server:
-  port: 8040
+  port: 8080
 
 management:
   context-path: /system
+
+spring:
+  resources:
+    chain:
+      enabled: true
+  devtools:
+    remote:
+      restart:
+        enabled: false
+
+security:
+  sessions: ALWAYS
+  ignored:
+    - /webjars/**,/js/**,/css/**,/images/**
+  oauth2:
+    client:
+      clientId: bd1c0a783ccdd1c9b9e4
+      clientSecret: 1a9030fbca47a5b2c28e92f19050bb77824b5ad1
+      accessTokenUri: https://github.com/login/oauth/access_token
+      userAuthorizationUri: https://github.com/login/oauth/authorize
+      clientAuthenticationScheme: form
+    resource:
+      userInfoUri: https://api.github.com/user
+      preferTokenInfo: false
+# (basic: client_credentials grant)
 
 zuul:
   routes:
     resource:
       path: /resource/**
       url: http://localhost:9000/resource
-    user:
-      path: /user/**
-      url: http://localhost:9999/uaa/user
     ui:
       path: /ui/**
-      url: http://localhost:8080
+      url: http://localhost:8000
 
 logging:
   level:
     org.springframework.security: DEBUG
+  pattern:
+    level: '%clr([trace=%X{X-Trace-Id:-},span=%X{X-Span-Id:-}]){yellow} %5p'
+    

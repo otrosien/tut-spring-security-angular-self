@@ -1,7 +1,6 @@
 package com.example;
 
 import java.security.KeyPair;
-import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -10,96 +9,47 @@ import org.springframework.cloud.sleuth.Sampler;
 import org.springframework.cloud.sleuth.sampler.AlwaysSampler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @SpringBootApplication
-@Controller
-@SessionAttributes("authorizationRequest")
-@EnableResourceServer
-public class AuthApplication extends WebMvcConfigurerAdapter {
+public class AuthorizationApplication {
 
 	@Bean
 	public Sampler<?> defaultSampler() {
 		return new AlwaysSampler();
 	}
 
-	@RequestMapping("/user")
-	@ResponseBody
-	public Principal user(Principal user) {
-		return user;
-	}
-
-	@Override
-	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/login").setViewName("login");
-		registry.addViewController("/oauth/confirm_access").setViewName("authorize");
-	}
-
 	public static void main(String[] args) {
-		SpringApplication.run(AuthApplication.class, args);
+		SpringApplication.run(AuthorizationApplication.class, args);
 	}
 
-	@Configuration
-	@Order(-20)
-	protected static class LoginConfig extends WebSecurityConfigurerAdapter {
-
-		@Autowired
-		private AuthenticationManager authenticationManager;
-
+	@Controller
+	protected static class MvcConfigurerAdapter extends WebMvcConfigurerAdapter {
 		@Override
-		protected void configure(HttpSecurity http) throws Exception {
-			// @formatter:off
-			http
-				.formLogin().loginPage("/login").permitAll()
-			.and()
-				.requestMatchers().antMatchers("/login", "/oauth/authorize", "/oauth/confirm_access")
-//			.and()
-//				.authorizeRequests()
-//				.antMatchers("/system/**").anonymous()
-			.and()
-				.authorizeRequests()
-				.anyRequest().authenticated()
-			;
-
-			//			http
-//			.authorizeRequests()
-//			.antMatchers("/login", "/oauth/authorize", "/oauth/confirm_access", "/system/**","/webjars/**").permitAll()
-//			.anyRequest().authenticated()
-//			.and()
-//			.formLogin().loginPage("/login").permitAll();
-
-			// @formatter:on
+		public void addViewControllers(ViewControllerRegistry registry) {
+			registry.addViewController("/login").setViewName("login");
+			registry.addViewController("/oauth/confirm_access").setViewName("authorize");
 		}
-
-		@Override
-		protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-			auth.parentAuthenticationManager(authenticationManager);
-		}
+		
+		
 	}
 
 	@Configuration
 	@EnableAuthorizationServer
-	protected static class OAuth2AuthorizationConfig extends
-			AuthorizationServerConfigurerAdapter {
+	@SessionAttributes("authorizationRequest")
+	protected static class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
 
 		@Autowired
 		private AuthenticationManager authenticationManager;
