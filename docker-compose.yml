@@ -37,7 +37,7 @@ web:
     # Remove TRANSPORT_TYPE to disable tracing
     - TRANSPORT_TYPE=http
   ports:
-    - 8080:8080
+    - 8080:8081
     - 9990:9990
   links:
     - query
