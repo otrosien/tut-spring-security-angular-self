@@ -39,7 +39,6 @@ dependencies {
 	compile('org.springframework.cloud:spring-cloud-starter-zuul')
 	runtime('org.springframework.boot:spring-boot-starter-jetty')
 	runtime('org.springframework.boot:spring-boot-starter-actuator')
-	runtime('org.springframework.boot:spring-boot-devtools')
 	compile('org.springframework.cloud:spring-cloud-starter-zipkin')
 	
 	testCompile('org.springframework.boot:spring-boot-starter-test')
