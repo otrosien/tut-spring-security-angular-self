@@ -13,7 +13,6 @@ security:
 
 server:
   port: 9000
-  context-path: /resource
 
 logging:
   level:
@@ -23,3 +22,6 @@ logging:
 
 management:
   context-path: /system
+  security:
+    enabled: false
+  

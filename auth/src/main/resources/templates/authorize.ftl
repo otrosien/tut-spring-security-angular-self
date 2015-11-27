@@ -1,7 +1,7 @@
 <html>
 <head>
-<link rel="stylesheet" href="/uaa/webjars/bootstrap/3.3.5/css/bootstrap.min.css"/>
-<link rel="stylesheet" href="/uaa/webjars/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
+<link rel="stylesheet" href="../webjars/bootstrap/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="../webjars/bootstrap/css/bootstrap-theme.min.css"/>
 </head>
 <body>
 	<div class="container">
@@ -24,6 +24,6 @@
 			<button class="btn btn-primary" type="submit">Deny</button>
 		</form>
 	</div>
-	<script src="/uaa/webjars/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
+	<script src="../webjars/jquery/jquery.min.js" type="text/javascript"></script>
 </body>
 </html>

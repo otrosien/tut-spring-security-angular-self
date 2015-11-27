@@ -50,6 +50,7 @@ dependencies {
 	runtime("org.webjars:angular-ui-bootstrap:0.14.3")
 	runtime("org.webjars:bootstrap:3.3.5")
 	runtime("org.webjars:jquery:2.1.4")
+	runtime("org.webjars:webjars-locator")
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testRuntime('org.webhars:jasmine:2.0.0')

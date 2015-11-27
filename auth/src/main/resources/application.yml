@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: auth
+  resources:
+    chain:
+      enabled: true
+server:
+  port: 9999
+  context-path: /uaa
+  session:
+    cookie:
+      name: AUTH_SESSION
+
+security:
+  user:
+    password: password
+  ignored: 
+    - /webjars/**
+    - /js/**
+    - /css/**
+    - /images/**
+    - /**/favicon.ico
+
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+  pattern:
+    level: '%clr([trace=%X{X-Trace-Id:-},span=%X{X-Span-Id:-}]){yellow} %5p'
+management:
+  context-path: /system
+  security:
+    enabled: false

@@ -47,6 +47,7 @@ dependencies {
 	
 	runtime("org.webjars:jquery:2.1.4")
 	runtime("org.webjars:bootstrap:3.3.5")
+	runtime("org.webjars:webjars-locator")
     testCompile('org.springframework.boot:spring-boot-starter-test') 
 }
 

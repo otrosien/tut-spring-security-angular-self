@@ -21,7 +21,7 @@ public class ResourceApplication {
 		SpringApplication.run(ResourceApplication.class, args);
 	}
 
-	@RequestMapping("/")
+	@RequestMapping("/resource")
 	public Map<String, Object> home(HttpServletRequest request) {
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("id", UUID.randomUUID().toString());

@@ -70,23 +70,13 @@ public class AuthApplication extends WebMvcConfigurerAdapter {
 			// @formatter:off
 			http
 				.formLogin().loginPage("/login").permitAll()
-			.and()
+		   .and()
 				.requestMatchers().antMatchers("/login", "/oauth/authorize", "/oauth/confirm_access")
-//			.and()
-//				.authorizeRequests()
-//				.antMatchers("/system/**").anonymous()
 			.and()
 				.authorizeRequests()
+//				.antMatchers("/system/**").permitAll()
 				.anyRequest().authenticated()
 			;
-
-			//			http
-//			.authorizeRequests()
-//			.antMatchers("/login", "/oauth/authorize", "/oauth/confirm_access", "/system/**","/webjars/**").permitAll()
-//			.anyRequest().authenticated()
-//			.and()
-//			.formLogin().loginPage("/login").permitAll();
-
 			// @formatter:on
 		}
 
