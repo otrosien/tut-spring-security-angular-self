@@ -38,6 +38,8 @@ security:
 
 management:
   context-path: /system
+  security:
+    enabled: false
 
 logging:
   level:

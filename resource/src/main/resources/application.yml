@@ -24,4 +24,3 @@ management:
   context-path: /system
   security:
     enabled: false
-  

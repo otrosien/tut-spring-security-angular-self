@@ -70,11 +70,10 @@ public class AuthApplication extends WebMvcConfigurerAdapter {
 			// @formatter:off
 			http
 				.formLogin().loginPage("/login").permitAll()
-		   .and()
+			.and()
 				.requestMatchers().antMatchers("/login", "/oauth/authorize", "/oauth/confirm_access")
 			.and()
 				.authorizeRequests()
-//				.antMatchers("/system/**").permitAll()
 				.anyRequest().authenticated()
 			;
 			// @formatter:on
@@ -106,11 +105,11 @@ public class AuthApplication extends WebMvcConfigurerAdapter {
 
 		@Override
 		public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-			clients.inMemory()
-					.withClient("acme")
-					.secret("acmesecret")
-					.authorizedGrantTypes("authorization_code", "refresh_token",
-							"password").scopes("openid");
+			clients.inMemory() //
+				.withClient("acme") //
+				.secret("acmesecret") //
+				.authorizedGrantTypes("authorization_code", "refresh_token", "password") //
+				.scopes("openid");
 		}
 
 		@Override
@@ -123,8 +122,12 @@ public class AuthApplication extends WebMvcConfigurerAdapter {
 		@Override
 		public void configure(AuthorizationServerSecurityConfigurer oauthServer)
 				throws Exception {
-			oauthServer.tokenKeyAccess("permitAll()").checkTokenAccess(
-					"isAuthenticated()");
+			oauthServer
+				// GET /oauth/token_key
+				.tokenKeyAccess("permitAll()")
+				// GET /oauth/check_token?token=....
+				// Authorization: Basic acme:acmesecret
+				.checkTokenAccess("isAuthenticated()");
 		}
 
 	}
