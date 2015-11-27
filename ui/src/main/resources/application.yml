@@ -44,8 +44,6 @@ management:
 logging:
   level:
     org.springframework.security: DEBUG
-  pattern:
-    level: '%clr([trace=%X{X-Trace-Id:-},span=%X{X-Span-Id:-}]){yellow} %5p'
 
 proxy:
   auth:

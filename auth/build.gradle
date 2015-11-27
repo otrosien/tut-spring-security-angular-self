@@ -37,14 +37,14 @@ dependencyManagement {
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-security')
+	compile('org.springframework.session:spring-session-data-redis')
 	runtime('org.springframework.security:spring-security-jwt')
 	runtime('org.springframework.security.oauth:spring-security-oauth2')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	runtime('org.springframework.boot:spring-boot-starter-jetty')
 	runtime('org.springframework.boot:spring-boot-starter-actuator')
 	runtime('org.springframework.boot:spring-boot-starter-freemarker')
-	compile('org.springframework.cloud:spring-cloud-starter-zipkin')
-	
+
 	runtime("org.webjars:jquery:2.1.4")
 	runtime("org.webjars:bootstrap:3.3.5")
 	runtime("org.webjars:webjars-locator")
