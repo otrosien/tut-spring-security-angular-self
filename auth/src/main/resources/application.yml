@@ -4,12 +4,10 @@ spring:
   resources:
     chain:
       enabled: true
+
 server:
   port: 9999
   context-path: /uaa
-  session:
-    cookie:
-      name: AUTH_SESSION
 
 security:
   user:
@@ -20,7 +18,6 @@ security:
     - /css/**
     - /images/**
     - /**/favicon.ico
-
 
 logging:
   level:

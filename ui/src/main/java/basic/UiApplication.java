@@ -9,12 +9,10 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
-import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.stereotype.Component;
 
 @SpringBootApplication
 @EnableZuulProxy
-@EnableRedisHttpSession
 public class UiApplication {
 
 	public static void main(String[] args) {

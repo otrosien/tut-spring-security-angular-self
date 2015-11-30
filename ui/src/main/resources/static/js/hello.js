@@ -6,7 +6,7 @@ angular.module('hello', [ 'ngRoute' ]).config(function($routeProvider, $httpProv
 	}).otherwise('/');
 
 	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-	
+
 }).controller('navigation',
 
 function($rootScope, $scope, $http, $location, $route) {

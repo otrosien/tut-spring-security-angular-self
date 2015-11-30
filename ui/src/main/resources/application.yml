@@ -8,7 +8,7 @@ spring:
       enabled: true
 
 server:
-  port: 8000
+  port: 8080
   session:
     cookie:
       name: UI_SESSION
